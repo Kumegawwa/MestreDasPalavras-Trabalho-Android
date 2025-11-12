@@ -27,6 +27,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.myapplication.data.repository.RankingRepository
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.text.TextStyle
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,8 +72,27 @@ fun TelaRanking(
                 }
             } else {
                 itemsIndexed(rankingList) { index, item ->
-                    val color = if (index == 0) Color(0xFFFFD700) else MaterialTheme.colorScheme.onBackground
-                    val fontWeight = if (index == 0) FontWeight.Bold else FontWeight.Normal
+
+                    val shadow = Shadow(
+                        color = Color.Black,
+                        offset = Offset(2.0f, 2.0f),
+                        blurRadius = 4.0f
+                    )
+
+                    val textStyle = if (index == 0) {
+                        TextStyle(
+                            color = Color(0xFFFFD700),
+                            fontWeight = FontWeight.Bold,
+                            shadow = shadow,
+                            fontSize = MaterialTheme.typography.bodyLarge.fontSize
+                        )
+                    } else {
+                        TextStyle(
+                            color = MaterialTheme.colorScheme.onBackground,
+                            fontWeight = FontWeight.Normal,
+                            fontSize = MaterialTheme.typography.bodyLarge.fontSize
+                        )
+                    }
 
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -78,15 +100,11 @@ fun TelaRanking(
                     ) {
                         Text(
                             text = "${index + 1}. ${item.nomeJogador}",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = color,
-                            fontWeight = fontWeight
+                            style = textStyle
                         )
                         Text(
                             text = "Ganhou na ${item.tentativas}º tentativas",
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = color,
-                            fontWeight = fontWeight
+                            style = textStyle
                         )
                     }
                 }

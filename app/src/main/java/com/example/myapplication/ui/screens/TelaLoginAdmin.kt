@@ -36,8 +36,8 @@ import com.google.firebase.auth.FirebaseAuth
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TelaLoginAdmin(navController: NavController) {
-    var email by remember { mutableStateOf("") }
-    var senha by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("admin@admin.com") }
+    var senha by remember { mutableStateOf("admin1234") }
     var erro by remember { mutableStateOf<String?>(null) }
     var isLoading by remember { mutableStateOf(false) }
     val auth = FirebaseAuth.getInstance()
@@ -97,7 +97,7 @@ fun TelaLoginAdmin(navController: NavController) {
                 isError = erro != null,
                 modifier = Modifier.fillMaxWidth()
             )
-            
+
             erro?.let {
                 Text(
                     text = it,
