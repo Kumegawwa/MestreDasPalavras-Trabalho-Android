@@ -19,4 +19,8 @@ class RankingRepository(private val rankingDao: RankingDao) {
     suspend fun delete(ranking: Ranking) {
         rankingDao.delete(ranking)
     }
+
+    suspend fun clearAll() {
+        rankingDao.clearAll()
+    }
 }

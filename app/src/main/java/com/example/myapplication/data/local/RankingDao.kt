@@ -22,4 +22,7 @@ interface RankingDao {
 
     @Query("SELECT * FROM ranking ORDER BY tentativas ASC LIMIT 10")
     fun getAllFlow(): Flow<List<Ranking>>
+
+    @Query("DELETE FROM ranking")
+    suspend fun clearAll()
 }

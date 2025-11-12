@@ -80,14 +80,14 @@ fun AppNavigation() {
 
         composable("admin_dashboard") {
             val viewModel: AdminViewModel = viewModel(
-                factory = AdminViewModel.Factory(palavraRepository)
+                factory = AdminViewModel.Factory(palavraRepository, rankingRepository)
             )
             TelaAdminDashboard(navController = navController, viewModel = viewModel)
         }
 
         composable("gerenciar_palavras") {
             val viewModel: AdminViewModel = viewModel(
-                factory = AdminViewModel.Factory(palavraRepository)
+                factory = AdminViewModel.Factory(palavraRepository, rankingRepository)
             )
             TelaGerenciarPalavras(navController = navController, viewModel = viewModel)
         }
